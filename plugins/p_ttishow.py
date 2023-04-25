@@ -262,7 +262,7 @@ async def list_chats(bot, message):
     async for chat in chats:
         
         
-        out += f"**- Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n**Username:** {username}\n"
+        out += f"**- Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n**Username:** {chat{'username'}}\n"
         if chat['chat_status']['is_disabled']:
             out += '( Disabled Chat )'
         out += '\n'
