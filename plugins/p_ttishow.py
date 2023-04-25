@@ -255,25 +255,33 @@ async def list_users(bot, message):
         await message.reply_document('users.txt', caption="List Of Users")
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
+
 async def list_chats(bot, message):
-    sps = await message.reply('Getting List Of chats')
+
+    raju = await message.reply('Getting List Of chats')
+
     chats = await db.get_all_chats()
+
     out = "Chats Saved In DB Are:\n\n"
+
     async for chat in chats:
-        
-        
-        out += f"**- Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n**Username:** {chat{'username'}}\n"
+
+        out += f"**Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`"
+
         if chat['chat_status']['is_disabled']:
+
             out += '( Disabled Chat )'
+
         out += '\n'
-        
-    
+
     try:
-        await sps.edit_text(out)
+
+        await raju.edit_text(out)
+
     except MessageTooLong:
+
         with open('chats.txt', 'w+') as outfile:
+
             outfile.write(out)
+
         await message.reply_document('chats.txt', caption="List Of Chats")
-
-
-    
