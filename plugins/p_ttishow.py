@@ -264,3 +264,13 @@ async def list_chats(bot, message):
         username = "private" if not username else "@" + username
         out += f"**- Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n**Username:** {username}\n"
     
+    
+    try:
+        await sps.edit_text(out)
+    except MessageTooLong:
+        with open('chats.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('chats.txt', caption="List Of Chats")
+
+
+
