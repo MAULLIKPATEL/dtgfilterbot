@@ -260,10 +260,13 @@ async def list_chats(bot, message):
     chats = await db.get_all_chats()
     out = "Chats Saved In DB Are:\n\n"
     async for chat in chats:
-        username = chat['username']
-        username = "private" if not username else "@" + username
+        
+        
         out += f"**- Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n**Username:** {username}\n"
-    
+        if chat['chat_status']['is_disabled']:
+            out += '( Disabled Chat )'
+        out += '\n'
+        
     
     try:
         await sps.edit_text(out)
@@ -273,4 +276,4 @@ async def list_chats(bot, message):
         await message.reply_document('chats.txt', caption="List Of Chats")
 
 
-
+    
