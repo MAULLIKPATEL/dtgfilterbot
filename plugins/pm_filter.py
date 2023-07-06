@@ -61,7 +61,11 @@ async def await message.reply_chat_action(enums.ChatAction.TYPING)
             
       
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
-async def give_filter(client,message):
+async def await message.reply_chat_action(enums.ChatAction.TYPING)
+        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
+        await asyncio.sleep(5)
+        await mz.delete()
+elif give_filter(client,message):
     group_id = message.chat.id
     name = message.text
 
@@ -771,6 +775,10 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
+        await asyncio.sleep(3)
+        await mz.delete()
         cap =  f"📂 Results For ➠ {search} \n\n👉🏻JOIN @DTG_TV For download Media File \n\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n➠ Type Only Movie Name With Correct Spelling.✍️\n➠ Add Year For Better Result and don't add movie or series words in qurey🗓️\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n\n "
     if imdb and imdb.get('poster'):
         try:
