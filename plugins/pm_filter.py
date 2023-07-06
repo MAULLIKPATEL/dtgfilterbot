@@ -33,12 +33,7 @@ SPELL_CHECK = {}
 FILTER_MODE = {}
 
 @Client.on_message(filters.command('autofilter'))
-async def await message.reply_chat_action(enums.ChatAction.TYPING)
-        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
-        await asyncio.sleep(1)
-        await mz.delete()
-
-      elif fil_mod(client, message): 
+async def fil_mod(client, message): 
       mode_on = ["yes", "on", "true"]
       mode_of = ["no", "off", "false"]
 
