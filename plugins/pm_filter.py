@@ -664,6 +664,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 async def auto_filter(client, msg, spoll=False):
+
+    await message.reply_chat_action(enums.ChatAction.TYPING)
+        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
+        await asyncio.sleep(1)
+        await mz.delete()
+
+
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
