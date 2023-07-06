@@ -56,8 +56,7 @@ async def fil_mod(client, message):
             
       
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
-async def message.reply_chat_action(enums.ChatAction.TYPING)
-        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
+async def mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
         await asyncio.sleep(5)
         await mz.delete()
 elif give_filter(client,message):
