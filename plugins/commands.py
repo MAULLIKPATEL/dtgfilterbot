@@ -53,6 +53,10 @@ async def start(client, message):
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        ma=await message.reply_sticker("CAACAgIAAxkBAAEJm8RkpkiJ9LM8YBVjLW4-ifU_sOyGowAC4DYAAuMoMEm_n8w43R1lwS8E")
+        await asyncio.sleep(2)
+        await ma.delete()
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -101,6 +105,10 @@ async def start(client, message):
             InlineKeyboardButton('😊 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        ma=await message.reply_sticker("CAACAgIAAxkBAAEJm8RkpkiJ9LM8YBVjLW4-ifU_sOyGowAC4DYAAuMoMEm_n8w43R1lwS8E")
+        await asyncio.sleep(1)
+        await ma.delete()
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
