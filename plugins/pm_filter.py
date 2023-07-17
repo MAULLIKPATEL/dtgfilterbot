@@ -55,10 +55,7 @@ async def fil_mod(client, message):
           await m.edit("𝚄𝚂𝙴 :- /autofilter on 𝙾𝚁 /autofilter off")
 
 
-@Client.on_message(filters.group | filters.private)
-async def mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
-        await asyncio.sleep(5)
-        await mz.delete()
+
             
       
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
