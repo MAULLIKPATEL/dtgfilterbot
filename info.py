@@ -69,3 +69,4 @@ LONG_DROPLINK_URL = environ.get("LONG_DROPLINK_URL", False)
 
 ## EXTRA FEATURES
 IMDB_DELET_TIME = int(environ.get('IMDB_DELET_TIME', "300"))
+LANGUAGES = ["HINDI", "malayalam", "mal", "tamil", "tam", "english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan", "Marathi", "Mar", "Gujarati", "Guj", "Bengali", "Ben", "Punjabi", "korean"]
