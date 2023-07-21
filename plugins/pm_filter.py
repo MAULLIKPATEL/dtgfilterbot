@@ -848,8 +848,13 @@ async def auto_filter(client, msg, spoll=False):
     btn.append([
                 InlineKeyboardButton("Ai Ho Toh Aisa- YouTube", url=f"https://openinapp.co/Ai-ho-toh-aisa-par01"),
             ])
-   
-                
+
+        
+
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
+        await asyncio.sleep(1)
+        await mz.delete()             
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
@@ -885,10 +890,6 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        await message.reply_chat_action(enums.ChatAction.TYPING)
-        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
-        await asyncio.sleep(3)
-        await mz.delete()
         cap =  f"📂 Results For ➠ {search} \n\n👉🏻JOIN @DTG_TV For download Media File \n\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n➠ Type Only Movie Name With Correct Spelling.✍️\n➠ Add Year For Better Result and don't add movie or series words in qurey🗓️\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n\n "
     if imdb and imdb.get('poster'):
         try:
@@ -908,10 +909,6 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(IMDB_DELET_TIME)
             await fek.delete()
     else:
-        await message.reply_chat_action(enums.ChatAction.TYPING)
-        mz=await message.reply_sticker("CAACAgQAAxkBAAEJm91kpmkN5jA8J4hUgaCv_HLlOSgntgAC7g0AAn2mwVC98nx2ic38Gi8E")
-        await asyncio.sleep(1)
-        await mz.delete()
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
         await asyncio.sleep(IMDB_DELET_TIME)
         await fuk.delete()        
