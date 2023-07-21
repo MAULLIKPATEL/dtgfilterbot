@@ -827,11 +827,11 @@ async def auto_filter(client, msg, spoll=False):
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
-          btn.insert(0, 
-        [
+        btn.insert(0, 
+         [
             InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇs", callback_data=f"languages#{search.replace(' ', '_')}#{key}")
-        ]
-    )
+         ]
+        )
         
         btn.append(
             [InlineKeyboardButton(text=f"🗓 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
