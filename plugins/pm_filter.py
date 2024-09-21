@@ -680,50 +680,30 @@ async def auto_filter(client, msg, spoll=False):
         settings = await get_settings(msg.message.chat.id)
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
+
     pre = 'filep' if settings['file_secure'] else 'file'
-    if settings["button"]:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortilink(msg.chat.id, await get_shortlink(msg.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"))
-                ),
-            ]
-            for file in files
-        ]
-    else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortilink(msg.chat.id, await get_shortlink(msg.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"))
-                ),
-               InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortilink(msg.chat.id, await get_shortlink(msg.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"))
-                ),
-            ]
-            for file in files
-        ]
+
+    def create_file_button(file):
+        short_link = await get_shortilink(msg.chat.id, await get_shortlink(msg.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"))
+        return InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=short_link)
+
+    btn = [[create_file_button(file) for file in files]]
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
-      
-        
-        btn.append(
-            [InlineKeyboardButton(text=f"🗓 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
-             InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}")]
-        )
-    else:
-        btn.append(
-            [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
-             )
 
-    btn.append([
-                InlineKeyboardButton("🤔 How To Download ", url=f"https://t.me/DTG_BOTS/65"),
-            ])
-    btn.append([
-                InlineKeyboardButton("Ai Ho Toh Aisa- YouTube", url=f"https://openinapp.co/Ai-ho-toh-aisa-par01"),
-            ])
+        btn.append([
+            InlineKeyboardButton(text=f"🗓 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
+            InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}")
+        ])
+    else:
+        btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
+
+    btn.append([InlineKeyboardButton("🤔 How To Download", url="https://t.me/DTG_BOTS/65")])
+    btn.append([InlineKeyboardButton("Ai Ho Toh Aisa- YouTube", url="https://openinapp.co/Ai-ho-toh-aisa-par01")])
+
    
                 
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
