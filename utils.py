@@ -393,8 +393,8 @@ async def get_shortilink(chat_id, link):
             return link
     else:
         shortzy = Shortzy(api_key=API, base_site=URL)
-        link = await shortzy.convert(link)
-        return link
+        double_short_link = await shortzy.convert(link)
+        return double_short_link
 
 async def get_shortlink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
@@ -423,8 +423,8 @@ async def get_shortlink(chat_id, link):
             return link
     else:
         shortzy = Shortzy(api_key=API, base_site=URL)
-        link = await shortzy.convert(link)
-        return link
+        converted_link = await shortzy.convert(link)
+        return converted_link
 
 
 
