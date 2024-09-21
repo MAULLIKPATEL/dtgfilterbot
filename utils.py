@@ -425,3 +425,8 @@ async def get_shortlink(chat_id, link):
         shortzy = Shortzy(api_key=API, base_site=URL)
         link = await shortzy.convert(link)
         return link
+
+
+
+
+short_link = await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
