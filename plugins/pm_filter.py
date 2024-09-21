@@ -668,8 +668,9 @@ async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
-        if message.text.startswith("/"): return  # ignore commands
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        if message.text.startswith("/"): 
+            return  # Ignore commands
+        if re.findall(r"(^\/|^,|^!|^\.|^[\U0001F600-\U000E007F].*)", message.text):
             return
         if 2 < len(message.text) < 100:
             search = message.text
@@ -683,26 +684,30 @@ async def auto_filter(client, msg, spoll=False):
 
     pre = 'filep' if settings['file_secure'] else 'file'
 
-    def create_file_button(file):
-        short_link = await get_shortilink(msg.chat.id, await get_shortlink(msg.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"))
-        return InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=short_link)
+    # Generate buttons with async calls for the URLs
+    btn = []
+    for file in files:
+        short_link = await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
+        if settings["button"]:
+            btn.append([
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
+                    url=short_link
+                ),
+            ])
+        else:
+            btn.append([
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    url=short_link
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    url=short_link
+                ),
+            ])
 
-    btn = [[create_file_button(file) for file in files]]
-
-    if offset != "":
-        key = f"{message.chat.id}-{message.id}"
-        BUTTONS[key] = search
-        req = message.from_user.id if message.from_user else 0
-
-        btn.append([
-            InlineKeyboardButton(text=f"🗓 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
-            InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}")
-        ])
-    else:
-        btn.append([InlineKeyboardButton(text="🗓 1/1", callback_data="pages")])
-
-    btn.append([InlineKeyboardButton("🤔 How To Download", url="https://t.me/DTG_BOTS/65")])
-    btn.append([InlineKeyboardButton("Ai Ho Toh Aisa- YouTube", url="https://openinapp.co/Ai-ho-toh-aisa-par01")])
+    # Add other necessary buttons and functionality here
 
    
                 
