@@ -429,4 +429,3 @@ async def get_shortlink(chat_id, link):
 
 
 
-short_link = await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
