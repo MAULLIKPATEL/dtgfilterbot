@@ -355,6 +355,10 @@ def remove_escapes(text: str) -> str:
     return res
 
 
+async def get_settings(group_id):
+    settings = await db.get_settings(group_id)
+    return settings
+
 def humanbytes(size):
     if not size:
         return ""
@@ -366,24 +370,18 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-
 async def get_shortilink(chat_id, link):
-    settings = await get_settings(chat_id) #fetching settings for group
-    if 'shortlink' in settings.keys():
-        URL = settings['shortlink']
-        API = settings['shortlink_api']
-    else:
-        URL = SHORTILINK_URL
-        API = SHORTILINK_API
+    settings = await get_settings(chat_id)
+    URL = settings.get('shortlink', SHORTILINK_URL)
+    API = settings.get('shortlink_api', SHORTILINK_API)
+
     if URL.startswith("shorturllink") or URL.startswith("terabox.in") or URL.startswith("urlshorten.in"):
         URL = SHORTILINK_URL
         API = SHORTILINK_API
+
     if URL == "api.shareus.io":
         url = f'https://{URL}/easy_api'
-        params = {
-            "key": API,
-            "link": link,
-        }
+        params = {"key": API, "link": link}
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
@@ -398,22 +396,17 @@ async def get_shortilink(chat_id, link):
         return double_short_link
 
 async def get_shortlink(chat_id, link):
-    settings = await get_settings(chat_id) #fetching settings for group
-    if 'shortlink' in settings.keys():
-        URL = settings['shortlink']
-        API = settings['shortlink_api']
-    else:
-        URL = SHORTLINK_URL
-        API = SHORTLINK_API
+    settings = await get_settings(chat_id)
+    URL = settings.get('shortlink', SHORTLINK_URL)
+    API = settings.get('shortlink_api', SHORTLINK_API)
+
     if URL.startswith("shorturllink") or URL.startswith("terabox.in") or URL.startswith("urlshorten.in"):
         URL = SHORTLINK_URL
         API = SHORTLINK_API
+
     if URL == "api.shareus.io":
         url = f'https://{URL}/easy_api'
-        params = {
-            "key": API,
-            "link": link,
-        }
+        params = {"key": API, "link": link}
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
@@ -427,6 +420,21 @@ async def get_shortlink(chat_id, link):
         converted_link = await shortzy.convert(link)
         return converted_link
 
+async def double_short_link(chat_id, link):
+    """
+    Shortens a given link twice: first using get_shortlink and then using get_shortilink.
 
+    Args:
+        chat_id (int): The ID of the chat to fetch settings for.
+        link (str): The original URL to be shortened.
 
-
+    Returns:
+        str: The final shortened URL after two rounds of shortening.
+    """
+    try:
+        first_short_link = await get_shortlink(chat_id, link)
+        final_short_link = await get_shortilink(chat_id, first_short_link)
+        return final_short_link
+    except Exception as e:
+        logger.error(f"Error in double_short_link: {e}")
+        return link  # or some fallback
