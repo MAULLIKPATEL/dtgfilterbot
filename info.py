@@ -49,9 +49,9 @@ LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False")
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 #first and second
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'api.shareus.io')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'dtg')
 SHORTLINK_API = environ.get('SHORTLINK_API', 'myapi')
-SHORTILINK_URL = environ.get('SHORTLINK_URL', 'api.shareus.io')
+SHORTILINK_URL = environ.get('SHORTLINK_URL', 'first')
 SHORTILINK_API = environ.get('SHORTLINK_API', 'myapi')
 INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
 FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '')).split()]
