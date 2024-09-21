@@ -365,15 +365,6 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-shortz = shortzy.Shortzy(SHORTENER_API, "dtglinks.in")
-async def get_shortlink(link):
-    if SHORTENER_API:
-        if LONG_DROPLINK_URL == "True" or LONG_DROPLINK_URL is True:
-            return await shortz.get_quick_link(link)
-        else:
-            return await shortz.convert(link, silently_fail=False)
-    return link
-
 
 async def get_shortilink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
