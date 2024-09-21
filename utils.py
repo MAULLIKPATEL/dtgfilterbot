@@ -3,6 +3,7 @@ from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait,
 from info import AUTH_CHANNEL, LONG_DROPLINK_URL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTILINK_URL,SHORTLINK_URL,SHORTLINK_API,SHORTILINK_API
 from imdb import IMDb
 import asyncio
+from shortzy import Shortzy
 from pyrogram.types import Message, InlineKeyboardButton
 from pyrogram import enums
 from typing import Union
