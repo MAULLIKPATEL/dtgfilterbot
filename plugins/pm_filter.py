@@ -59,7 +59,6 @@ async def fil_mod(client, message):
 async def give_filter(client,message):
     group_id = message.chat.id
     name = message.text
-    short_link = await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
     keywords = await get_filters(group_id)
     for keyword in reversed(sorted(keywords, key=len)):
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
