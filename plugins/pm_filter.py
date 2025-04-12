@@ -746,7 +746,7 @@ async def auto_filter(client, msg, spoll=False):
              )
 
     btn.append([
-                InlineKeyboardButton("🤔 How To Download ", url=f"https://telegram.me/DTG_TV/60"),
+                InlineKeyboardButton("🤔 How To Download ", url=f"https://telegram.me/DTG_TV"),
             ])
     
     btn.append([
@@ -818,7 +818,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name. If You Want Tis Movi e Request Us at - https://t.me/all_movie_search_bot")
+        k = await msg.reply("I couldn't find any movie in that name. If You Want Tis Movi e Request Us at - https://t.me/RequestYourMovieHindi")
         await asyncio.sleep(8)
         await k.delete()
         return
