@@ -12,3 +12,5 @@ Cinemagoer
 aiohttp
 pyshorteners
 pytz
+PyLeaves==1.0.2
+pyrofork==2.3.45
