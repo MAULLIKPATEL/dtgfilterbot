@@ -722,7 +722,7 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-      else:
+    else:  # Fixed indentation here
         btn = [
             [
                 InlineKeyboardButton(
@@ -735,7 +735,7 @@ async def auto_filter(client, msg, spoll=False):
                 ),
             ]
             for file in files
-        ]        
+        ]
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
