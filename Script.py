@@ -107,6 +107,26 @@ ID - <code>{}</code>
 Name - {}
 """
 
+    CAPTION = """ 
+<b>══════════════════
+🗂 {file_name}
+═══════════════════ 
+Follow Our Insta Devotee Page 👇
+╔══════════════════╗         
+    <a href="https://urlgeni.us/instagram/Kanha">🌸 Radhe Radhe 🌸</a>
+╚══════════════════╝</b>"""
+
+
+
+    RESTART_TXT = """
+<b>Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ !
+
+📅 Dᴀᴛᴇ : <code>{}</code>
+⏰ Tɪᴍᴇ : <code>{}</code>
+🌐 Tɪᴍᴇᴢᴏɴᴇ : <code>Asia/Kolkata</code>
+🛠️ Bᴜɪʟᴅ Sᴛᴀᴛᴜs: <code>v2.7.1 [ Sᴛᴀʙʟᴇ ]</code></b>"""
+
+    
     DONATE_TXT =  """<b>Donation</b>
 
    <b>Developer is Super Noob..  Just Learning from Official Docs..  Please Donate the developer for Keeping the Service Alive...</b>
