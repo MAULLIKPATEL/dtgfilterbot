@@ -65,4 +65,9 @@ LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
 SHORTENER_API = environ.get("SHORTENER_API", '681bf6ed2bdc16d93cdc6842be62a1baf6364e82')
+SHORTLINK_URL = environ.get("SHORTLINK_URL", 'gplinks.com')
 LONG_DROPLINK_URL = environ.get("LONG_DROPLINK_URL", False)
+VERIFY = bool(environ.get('VERIFY', False))
+IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/DTG_TV')
+IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
