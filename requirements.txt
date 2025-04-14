@@ -8,3 +8,6 @@ requests
 bs4
 imdbpy==2021.4.18
 shortzy
+Cinemagoer
+aiohttp
+pyshorteners
